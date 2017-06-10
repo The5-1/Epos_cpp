@@ -12,6 +12,13 @@
 class Shader
 {
 public:
+
+	// The handle to our shader program
+	GLuint shaderProgram;
+
+	// The handles to the induvidual shader
+	GLuint vertexshader, fragmentShader;
+
 	std::string ReadFile(const char* file)
 	{
 		// Open file
@@ -49,10 +56,10 @@ public:
 		BindAttributeLocation(0, "in_Position");
 		BindAttributeLocation(1, "in_Color");
 
-		if (!LoadVertexShader("tutorial2.vert"))
+		if (!LoadVertexShader("Tutorials\\tutorial2.vert"))
 			return false;
 
-		if (!LoadFragmentShader("tutorial2.frag"))
+		if (!LoadFragmentShader("Tutorials\\tutorial2.frag"))
 			return false;
 
 		// All shaders has been create, now we must put them together into one large object
@@ -62,10 +69,12 @@ public:
 
 	bool LoadVertexShader(const std::string &filename)
 	{
-		std::cout << "Linking Vertex shader" << std::endl;
+		printf("Attaching Vertex shader %s\n", filename.c_str());
 
 		// Read file as std::string 
 		std::string str = ReadFile(filename.c_str());
+
+		printf("File:\n %s\n", str.c_str());
 
 		// c_str() gives us a const char*, but we need a non-const one
 		char* src = const_cast<char*>(str.c_str());
@@ -90,15 +99,18 @@ public:
 		}
 
 		glAttachShader(shaderProgram, vertexshader);
+		printf("%s attached\n", filename.c_str());
 		return true;
 	}
 
 	bool LoadFragmentShader(const std::string &filename)
 	{
-		std::cout << "Loading Fragment Shader" << std::endl;
+		printf("Attaching Fragment shader %s\n", filename.c_str());
 
 		// Read file as std::string 
 		std::string str = ReadFile(filename.c_str());
+
+		printf("File:\n %s\n", str.c_str());
 
 		// c_str() gives us a const char*, but we need a non-const one
 		char* src = const_cast<char*>(str.c_str());
@@ -123,6 +135,7 @@ public:
 		}
 
 		glAttachShader(shaderProgram, fragmentShader);
+		printf("%s attached\n", filename.c_str());
 		return true;
 	}
 
@@ -199,11 +212,5 @@ public:
 		glDeleteShader(vertexshader);
 		glDeleteShader(fragmentShader);
 	}
-
-	// The handle to our shader program
-	GLuint shaderProgram;
-
-	// The handles to the induvidual shader
-	GLuint vertexshader, fragmentShader;
 
 };

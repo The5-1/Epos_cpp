@@ -53,5 +53,15 @@
     <ClInclude Include="Tutorials\SDL2_OpenGL_part2_ShaderHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Animation\HarmonicSpring.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation\BiarcInterpolation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tutorials\tutorial2.frag" />
+    <None Include="Tutorials\tutorial2.vert" />
   </ItemGroup>
 </Project>

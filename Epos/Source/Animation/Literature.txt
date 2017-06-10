@@ -1,0 +1,9 @@
+https://news.ycombinator.com/item?id=8670432
+http://www.ryanjuckett.com/programming/biarc-interpolation/
+http://www.ryanjuckett.com/programming/damped-springs/
+
+http://sol.gfxile.net/interpolation/
+
+http://sol.gfxile.net/interpolation/
+
+https://github.com/iamralpht/iamralpht.github.io/blob/master/physics/spring.js

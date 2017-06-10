@@ -24,6 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\main.h" />
+    <ClInclude Include="Source\Animation\BiarcInterpolation.h" />
+    <ClInclude Include="Source\Animation\HarmonicSpring.h" />
     <ClInclude Include="Source\boost_libraries.h" />
     <ClInclude Include="Source\include_containers.h" />
     <ClInclude Include="Source\include_GL.h" />
@@ -33,6 +35,10 @@
     <ClInclude Include="Source\std_libraries.h" />
     <ClInclude Include="Tutorials\SDL2_OpenGL_part2_ShaderHelper.h" />
     <ClInclude Include="WindowMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tutorials\tutorial2.frag" />
+    <None Include="Tutorials\tutorial2.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
