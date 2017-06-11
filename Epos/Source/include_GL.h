@@ -24,9 +24,21 @@ If you get linker errors that something can not be found it might be this!
 
 //https://stackoverflow.com/questions/19719055/what-are-the-differences-between-glu-glew-glut-qt-sdl-opengl-and-webgl
 
+//*****************************
+//OpenGL Platform Compatibility
+//-----------------------------
+//GL Extension Wrangler
+//gets those OpenGL functions that are available on the current platform
+//http://glew.sourceforge.net/basic.html
+#define GLEW_STATIC  //we use the glew32s.lib (static library) to include GLEW right into our exe, we need to tell this to GLEW
+#include <GL/glew.h> 
+//#include <GL/wglew.h> //platform specific extensions ("WGL extensions")
+//#include <GL/glxew.h> //platform specific extensions ("GLX extensions")
+//#include <GL/eglew.h> //no info found on this one...
+
 //***************************
 //OpenGL Window Libraries
-#define WINDOW_LIBRARY 1
+#define WINDOW_LIBRARY 2
 //---------------------------
 #if WINDOW_LIBRARY == 1
 //Simple Directmedia Layer:
@@ -48,14 +60,4 @@ If you get linker errors that something can not be found it might be this!
 #endif
 //***************************
 
-//*****************************
-//OpenGL Platform Compatibility
-//-----------------------------
-//GL Extension Wrangler
-//gets those OpenGL functions that are available on the current platform
-//http://glew.sourceforge.net/basic.html
-#define GLEW_STATIC  //we use the glew32s.lib (static library) to include GLEW right into our exe, we need to tell this to GLEW
-#include <GL/glew.h> 
-//#include <GL/wglew.h> //platform specific extensions ("WGL extensions")
-//#include <GL/glxew.h> //platform specific extensions ("GLX extensions")
-//#include <GL/eglew.h> //no info found on this one...
+
