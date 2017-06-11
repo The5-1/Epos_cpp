@@ -11,7 +11,7 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::renderScene()
+void Renderer::renderFunctionA()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -22,16 +22,4 @@ void Renderer::renderScene()
 	glEnd();
 
 	glutSwapBuffers();
-}
-
-void Renderer::setActiveRenderer(Renderer * renderer)
-{
-	Renderer::activeRenderer = renderer;
-}
-
-void Renderer::renderSceneCallbackWrapper()
-{
-	//C does not know classes so i cant pass it a member function
-	//instead i pass it this
-	Renderer::activeRenderer->renderScene();
 }

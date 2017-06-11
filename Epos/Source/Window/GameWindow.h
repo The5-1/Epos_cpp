@@ -17,7 +17,6 @@ public:
 
 	static void startWindowLoop();
 
-	static void callback_thunk();
 
 protected:
 	int Width = 1280;

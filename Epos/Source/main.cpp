@@ -13,18 +13,11 @@
 //https://learnopengl.com/
 //http://ogldev.atspace.co.uk/
 
-
-extern "C" void callback_thunk()
-{
-	return Renderer::activeRenderer->renderScene();
-}
-
 int main(int argc, char* argv[])
 {
 	printf("Running program: %s\n", argv[0]);
 
 	GameWindow* mainWindow = new GameWindow(&argc, argv);
-	Renderer* mainRenderer = new Renderer();
 
 	//callback issue:
 	//!!! explaination https://stackoverflow.com/a/5009648
@@ -35,6 +28,6 @@ int main(int argc, char* argv[])
 	//https://stackoverflow.com/questions/19808054/convert-c-function-pointer-to-c-function-pointer/19809787
 	//https://stackoverflow.com/questions/19339374/most-elegant-way-to-wrap-freeglut-callbacks-inside-a-class
 
-	mainWindow->registerRenderFunction(Renderer::renderSceneCallbackWrapper, mainRenderer); 
+	mainWindow->registerRenderFunction(Renderer::renderFunctionA); 
 	return 0;
 }

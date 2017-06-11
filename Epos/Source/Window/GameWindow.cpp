@@ -37,8 +37,6 @@ void GameWindow::registerRenderFunction(void(*callback)(void))
 {
 	this->renderFunction = callback;
 
-
-
 	int previousWindow = glutGetWindow(); //memorize the window context currently active
 	glutSetWindow(this->WindowID); //set the glut context to this window
 	glutDisplayFunc(callback); //assign the display function

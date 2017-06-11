@@ -1,17 +1,12 @@
 #pragma once
 
-class Renderer
+static class Renderer
 {
 public:
 	Renderer();
 	~Renderer();
 
-	void renderScene();
 
-	static Renderer* activeRenderer;
-
-	static void setActiveRenderer(Renderer* renderer);
-
-	static void renderSceneCallbackWrapper();
+	static void renderFunctionA();
 };
 
