@@ -19,19 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\imgui\examples\opengl3_example\imgui_impl_glfw_gl3.cpp" />
-    <ClCompile Include="Source\imgui\examples\opengl3_example\main.cpp" />
+    <ClCompile Include="Source\Renderer\Renderer.cpp" />
+    <ClCompile Include="Source\Window\GameWindow.cpp" />
     <ClCompile Include="Source\imgui\imgui.cpp" />
     <ClCompile Include="Source\imgui\imgui_demo.cpp" />
     <ClCompile Include="Source\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="WindowMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Renderer\Renderer.h" />
+    <ClInclude Include="Source\Window\GameWindow.h" />
     <ClInclude Include="Header\main.h" />
     <ClInclude Include="Source\Animation\BiarcInterpolation.h" />
     <ClInclude Include="Source\Animation\HarmonicSpring.h" />
     <ClInclude Include="Source\boost_libraries.h" />
-    <ClInclude Include="Source\imgui\examples\opengl3_example\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="Source\imgui\imconfig.h" />
     <ClInclude Include="Source\imgui\imgui.h" />
     <ClInclude Include="Source\imgui\imgui_internal.h" />
@@ -39,11 +41,11 @@
     <ClInclude Include="Source\imgui\stb_textedit.h" />
     <ClInclude Include="Source\imgui\stb_truetype.h" />
     <ClInclude Include="Source\include_containers.h" />
+    <ClInclude Include="Source\include_default.h" />
     <ClInclude Include="Source\include_GL.h" />
     <ClInclude Include="Source\include_GUI.h" />
     <ClInclude Include="Source\include_IO.h" />
     <ClInclude Include="Source\include_math.h" />
-    <ClInclude Include="Source\RessourcePathHelper.h" />
     <ClInclude Include="Source\std_libraries.h" />
     <ClInclude Include="WindowMain.h" />
   </ItemGroup>

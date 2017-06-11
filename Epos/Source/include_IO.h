@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <iostream>		//several standard stream objects 
 #include <iomanip>		//formatting IO
 #include <fstream>		//filestream

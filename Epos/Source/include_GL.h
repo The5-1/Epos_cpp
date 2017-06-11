@@ -43,13 +43,14 @@ If you get linker errors that something can not be found it might be this!
 #if WINDOW_LIBRARY == 1
 //Simple Directmedia Layer:
 //Platform and Graphics API independent (works on DirectX too)
+//As soon as you use openGL directly SDL does not help much anymore...
 //when creating a new window you can use SDL_WINDOW_OPENGL to make the window use OpenGL
 //medium level library for creating windows, handling input, loading textures, etc., abstracts some from OpenGL
 #include <SDL2/SDL.h> 
 
 #elif WINDOW_LIBRARY == 2
 //FreeGLUT - GL Utility Toolkit:
-//medium-low level library for creating windows, implements event loop, abstracts some from OpenGL
+//low level library for creating windows, has extensions that allow the same control as GLFW3
 #include <GL/glut.h>  
 
 #elif WINDOW_LIBRARY == 3
