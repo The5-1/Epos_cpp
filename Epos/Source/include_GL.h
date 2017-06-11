@@ -25,22 +25,22 @@ If you get linker errors that something can not be found it might be this!
 //https://stackoverflow.com/questions/19719055/what-are-the-differences-between-glu-glew-glut-qt-sdl-opengl-and-webgl
 
 //***************************
-//OpenGL GUI/Window Libraries
-#define GUI_LIBRARY 1
+//OpenGL Window Libraries
+#define WINDOW_LIBRARY 1
 //---------------------------
-#if GUI_LIBRARY == 1
+#if WINDOW_LIBRARY == 1
 //Simple Directmedia Layer:
 //Platform and Graphics API independent (works on DirectX too)
 //when creating a new window you can use SDL_WINDOW_OPENGL to make the window use OpenGL
 //medium level library for creating windows, handling input, loading textures, etc., abstracts some from OpenGL
 #include <SDL2/SDL.h> 
 
-#elif GUI_LIBRARY == 2
+#elif WINDOW_LIBRARY == 2
 //FreeGLUT - GL Utility Toolkit:
 //medium-low level library for creating windows, implements event loop, abstracts some from OpenGL
 #include <GL/glut.h>  
 
-#elif GUI_LIBRARY == 3
+#elif WINDOW_LIBRARY == 3
 //GL Window Framework:
 //low level library that only creates windows, direct control over OpenGL
 #include <GL/glfw3.h> 

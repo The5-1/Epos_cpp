@@ -27,10 +27,7 @@
     <ClCompile Include="Source\imgui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\imgui\examples\sdl_opengl3_example\main.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,9 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\imgui\stb_truetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\imgui\examples\sdl_opengl3_example\imgui_impl_sdl_gl3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

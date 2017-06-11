@@ -21,13 +21,13 @@ int main(int argc, char* argv[])
 
 	// Initialize SDL
 	// ==========================================================
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_EVENTS) != 0) //TIMER, AUDIO, VIDEO, JOYSTICK, HAPTIC, GAMECONTROLLER, EVENTS,
 	{
 		// Something failed, print error and exit.
 		std::cout << " Failed to initialize SDL : " << SDL_GetError() << std::endl;
 		return -1;
 	}
-	else printf("SDL_INIT_EVERYTHING successfull!\n");
+	else printf("SDL_INIT successfull!\n");
 
 	std::cout << "Resource path is: " << getResourcePath() << std::endl;
 
@@ -40,13 +40,19 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	// OpenGL
+	// OpenGL Setup
 	// ==========================================================
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); //use OpenGL core profile
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); //Profile Mask: use OpenGL core profile
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); //Version 4.5
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5); //Version 4.5
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); //enable double buffering, to draw to an offscreen target and then swap buffers
+
+	// OpenGL Context
+	// ==========================================================
 	SDL_GLContext SDL_GL_CreateContext(SDL_Window* window); //create the GL context --> next its GLEWs turn
+
+	// Initialize GLEW after context was created!
+	// ==========================================================
 	glewExperimental = GL_TRUE; //lets glew search for experimental functions
 	glewInit(); //GLEW __must__ init after the OpenGL context was created!!
 
