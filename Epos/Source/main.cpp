@@ -2,6 +2,7 @@
 #include "include_IO.h"
 //#include "include_math.h"
 #include "include_GL.h"
+#include "include_GUI.h"
 
 #include "RessourcePathHelper.h"
 
@@ -10,8 +11,6 @@
 int main(int argc, char* argv[])
 {
 	printf("Running program: %s\n", argv[0]);
-
-
 
 	int posX = 100;
 	int posY = 200;
@@ -35,7 +34,14 @@ int main(int argc, char* argv[])
 	// Create and init the window
 	// ==========================================================
 	window = SDL_CreateWindow("Server", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, sizeX, sizeY, SDL_WINDOW_OPENGL);
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create window : " << SDL_GetError();
+		return -1;
+	}
 
+	// OpenGL
+	// ==========================================================
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); //use OpenGL core profile
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4); //Version 4.5
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5); //Version 4.5
@@ -44,12 +50,6 @@ int main(int argc, char* argv[])
 	glewExperimental = GL_TRUE; //lets glew search for experimental functions
 	glewInit(); //GLEW __must__ init after the OpenGL context was created!!
 
-
-	if (window == nullptr)
-	{
-		std::cout << "Failed to create window : " << SDL_GetError();
-		return -1;
-	}
 
 	// Create and init the renderer
 	// ==========================================================

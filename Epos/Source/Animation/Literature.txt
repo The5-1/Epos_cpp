@@ -6,4 +6,4 @@ http://sol.gfxile.net/interpolation/
 
 http://sol.gfxile.net/interpolation/
 
-https://github.com/iamralpht/iamralpht.github.io/blob/master/physics/spring.js
+https://github.com/iamralpht/iamralpht.github.io/bloba/master/physics/spring.js
