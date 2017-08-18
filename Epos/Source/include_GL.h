@@ -25,20 +25,35 @@ If you get linker errors that something can not be found it might be this!
 //https://stackoverflow.com/questions/19719055/what-are-the-differences-between-glu-glew-glut-qt-sdl-opengl-and-webgl
 
 //*****************************
-//OpenGL Platform Compatibility
+//OpenGL Extensions
+#define EXTENSION_LIBRARY 2
 //-----------------------------
+#if EXTENSION_LIBRARY == 1
 //GL Extension Wrangler
+//initialize extensions
 //gets those OpenGL functions that are available on the current platform
 //http://glew.sourceforge.net/basic.html
 #define GLEW_STATIC  //we use the glew32s.lib (static library) to include GLEW right into our exe, we need to tell this to GLEW
 #include <GL/glew.h> 
+//	//glewInit();
 //#include <GL/wglew.h> //platform specific extensions ("WGL extensions")
 //#include <GL/glxew.h> //platform specific extensions ("GLX extensions")
-//#include <GL/eglew.h> //no info found on this one...
+//#include <GL/eglew.h> //no info found on this one... some other extension
+#elif EXTENSION_LIBRARY == 2
+//GL/GLES Loader-Generator
+//https://github.com/Dav1dde/glad
+//glad.h completely replaces any gl.h or gl3.h only include glad.h.
+//use the web tool to generate the "libary" for your chosen version of GL
+//A.) http://glad.dav1d.de/ and copy the .c file into your code and add it to the project tree
+//B.) http://glad2.dav1d.de/ and generate a older OpenGL file but header only
+#include <glad\glad.h>
+//gladLoadGL();
+#endif
+
 
 //***************************
 //OpenGL Window Libraries
-#define WINDOW_LIBRARY 2
+#define WINDOW_LIBRARY 3
 //---------------------------
 #if WINDOW_LIBRARY == 1
 //Simple Directmedia Layer:
@@ -62,3 +77,9 @@ If you get linker errors that something can not be found it might be this!
 //***************************
 
 
+
+//*****************************
+//OpenGL Math Library
+//-----------------------------
+#include <glm/glm.hpp>
+//***************************
