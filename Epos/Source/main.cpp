@@ -6,6 +6,9 @@
 //#include "include_math.h"
 #include "include_GUI.h"
 
+
+#include <entityplus\entity.h>
+
 #include "Window\GameWindow.h"
 #include "Renderer\Renderer.h"
 
@@ -37,6 +40,9 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 }
 #endif
 
+
+void test_main(); //forward declaration
+
 int main(int argc, char* argv[])
 {
 	printf("Running program: %s\n", argv[0]);
@@ -45,15 +51,17 @@ int main(int argc, char* argv[])
 	//mainWindow->registerRenderFunction(Renderer::renderFunctionA); 
 
 
+
+	test_main();
+
+
 #if WINDOW_LIBRARY == 1
 	printf("WINDOW_LIBRARY = SDL2\n");
 
 
 
-
 #elif WINDOW_LIBRARY == 2
 	printf("WINDOW_LIBRARY = freeglut\n");
-
 
 
 
@@ -86,20 +94,6 @@ int main(int argc, char* argv[])
 #endif
 
 
-
-#if false
-	float test = 0.0f;
-	float test2 = 1.0f;
-	struct local
-	{
-		static void testfunct(float f)
-		{
-			fprintf(stdout, "test is %f\n", f);
-		}
-	};
-	local::testfunct(test);
-	local::testfunct(test2);
-#endif
 
 #if WINDOW_LIBRARY == 1
 
@@ -142,3 +136,159 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+
+void test_LocalFunctions()
+{
+	float test = 0.0f;
+	float test2 = 1.0f;
+	struct local
+	{
+		static void testfunct(float f)
+		{
+			fprintf(stdout, "test is %f\n", f);
+		}
+	};
+	local::testfunct(test);
+	local::testfunct(test2);
+}
+
+void test_lambdas()
+{
+
+}
+
+void test_RAII()
+{
+	/*
+	Scope bound Ressources
+	----------------------
+	RAII = "Resource Acquisition is Initialisation"
+	= RABITS = "Resources are bound irreversibly to scope"
+	http://www.tomdalling.com/blog/software-design/resource-acquisition-is-initialisation-raii-explained/
+	When you heap allocate something and a exception is thrown before the destructur, the distructor wont ever be called
+	Same for opening a file and never closing it.
+
+	Instead do:
+	- allocate on the stack
+	- in the constructor, allocate everything, not later (if possible)
+	- the destructor releases all resources
+	*/
+
+	class OpenFile {
+	public:
+		OpenFile(const char* filename) {
+			//throws an exception on failure
+			_file.open(filename);
+		}
+
+		~OpenFile() {
+			//free resources
+			_file.close();
+		}
+
+		std::string readLine() {
+			return "hello";
+		}
+
+	private:
+		std::fstream _file;
+	};
+
+	struct local
+	{
+		static std::string firstLineOf_save(const char* filename) {
+			OpenFile f("boo.txt"); //stack allocated
+			return f.readLine();
+			//File closed here. `f` goes out of scope and destructor is run.
+		}
+
+		static std::string firstLineOf_unsave(const char* filename) {
+			OpenFile* f = new OpenFile("boo.txt"); //heap allocated
+			return f->readLine();
+			//DANGER! Destructor is never run, because `f` is never deleted
+		}
+	};
+}
+
+void test_Pointers()
+{
+	class Dummy
+	{
+		int a;
+	};
+
+
+}
+
+
+void test_MemoryLeak()
+{
+	std::cout << __FUNCTION__ << std::endl;
+	class Dummy
+	{
+	public:
+		long x;
+		Dummy() : x(x) {} 
+		//Dummy() : x(100) {}
+		Dummy(double in) : x(in) {} //"member initializer list"
+	};
+
+	class DummyA : Dummy
+	{
+	public:
+		int i;
+		DummyA(int in = 0 ) : i(in), Dummy() {}
+
+	};
+
+	fprintf(stdout, "See the RAM filling! (In Task Manager)\n");
+	for (int i = 0; i < 10000000; i++)
+	{
+		Dummy* d = new Dummy(i); //initialize on the heap
+		d = nullptr; //bend the pointer elsewhere, we cant go back
+		delete d; //wont work since we already messed up the pointer
+	}
+	fprintf(stdout, "Event though the scope of the loop ended, the stuff on the heap is still there.\n");
+
+	fprintf(stdout, "And now without messing up the pointer...\n");
+	for (int i = 0; i < 10000000; i++)
+	{
+		DummyA* da = new DummyA(); //uses DummyA(int in = 0 )
+		delete da; //call destructor
+		da = nullptr; //set the pointer to null just so everyone knows its not there anymore
+	}
+	fprintf(stdout, "...RAM did not change this time!\n");
+
+	fprintf(stdout, "Using the Stack rather than the heap...\n");
+	for (int i = 0; i < 10000000; i++)
+	{
+		Dummy s(i); //initialize a class on the stack
+	}
+	fprintf(stdout, "...frees itself when it goes out of scope!\n");
+
+
+}
+
+void test_SmartPointers()
+{
+	/*
+	https://stackoverflow.com/questions/569775/smart-pointers-boost-explained
+	https://stackoverflow.com/questions/677653/does-delete-call-the-destructor
+	Normally, 
+
+	Smartpointers have a "onwership" concept:
+	- no ownership at all
+	- transfer of ownership
+	- share of ownership
+
+	*/
+}
+
+
+void test_main()
+{
+	test_MemoryLeak();
+
+}
+
