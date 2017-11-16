@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Libraries\src\glad.c" />
     <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Source\glad\glad.c" />
     <ClCompile Include="Source\imgui\imgui.cpp" />
     <ClCompile Include="Source\imgui\imgui_demo.cpp" />
     <ClCompile Include="Source\imgui\imgui_draw.cpp" />

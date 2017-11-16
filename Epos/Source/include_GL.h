@@ -29,7 +29,7 @@ If you get linker errors that something can not be found it might be this!
 #define EXTENSION_LIBRARY 2
 //-----------------------------
 #if EXTENSION_LIBRARY == 1
-//GL Extension Wrangler
+//GLEW: GL Extension Wrangler
 //initialize extensions
 //gets those OpenGL functions that are available on the current platform
 //http://glew.sourceforge.net/basic.html
@@ -40,12 +40,12 @@ If you get linker errors that something can not be found it might be this!
 //#include <GL/glxew.h> //platform specific extensions ("GLX extensions")
 //#include <GL/eglew.h> //no info found on this one... some other extension
 #elif EXTENSION_LIBRARY == 2
-//GL/GLES Loader-Generator
+//GLAD: GL Loader-Generator
 //https://github.com/Dav1dde/glad
 //glad.h completely replaces any gl.h or gl3.h only include glad.h.
 //use the web tool to generate the "libary" for your chosen version of GL
-//A.) http://glad.dav1d.de/ and copy the .c file into your code and add it to the project tree
-//B.) http://glad2.dav1d.de/ and generate a older OpenGL file but header only
+//A.) http://glad.dav1d.de/ --> "gl: Version 4.6" + "Profile: Core" + "generate a loader" --> copy the .c file into your code and add it to the project tree
+//B.) http://glad2.dav1d.de/ --> generate a __header only__ version (currently only up to Version 4.5 available)
 #include <glad\glad.h>
 //gladLoadGL();
 #endif
@@ -62,6 +62,12 @@ If you get linker errors that something can not be found it might be this!
 //when creating a new window you can use SDL_WINDOW_OPENGL to make the window use OpenGL
 //medium level library for creating windows, handling input, loading textures, etc., abstracts some from OpenGL
 #include <SDL2/SDL.h> 
+//NOTE: https://stackoverflow.com/questions/6847360/error-lnk2019-unresolved-external-symbol-main-referenced-in-function-tmainc
+//either:
+//define your main with the parameters int main(int argc, char *args[])
+//or uncomment this: 
+//#undef main 
+#include <SDL2/SDL_image.h>
 
 #elif WINDOW_LIBRARY == 2
 //FreeGLUT - GL Utility Toolkit:
